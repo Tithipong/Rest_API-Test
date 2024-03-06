@@ -17,10 +17,14 @@ app.post("/books", (req, res) => {
   res.status(201).json(req.body);
 });
 const bodyParser = require('body-parser')
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.put('/books/:id', (req, res) => {
+    const updateIndex = books.findIndex(book => book.id === req.params.id)
+    res.json(Object.assign(books[updateIndex], req.body))
+  })
+  
 app.listen(3000, () => {
   console.log("http://localhost:3000");
 });
