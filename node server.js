@@ -16,6 +16,10 @@ app.post("/books", (req, res) => {
   books.push(req.body);
   res.status(201).json(req.body);
 });
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.listen(3000, () => {
   console.log("http://localhost:3000");
